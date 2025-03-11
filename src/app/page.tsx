@@ -56,7 +56,7 @@ export default function Home() {
                         }}
                     >
                         <ParallaxDiv
-                            className="relative flex h-[50%] items-center justify-center transform-3d lg:h-[30%]"
+                            className="relative flex h-[50%] items-center justify-center lg:h-[30%]"
                             degree={10}
                         >
                             <AspectRatio ratio={3 / 2}>
@@ -252,7 +252,7 @@ export default function Home() {
                 </div>
 
                 {/* contact */}
-                <div id="contact" className="perspective-distance flex h-dvh items-center justify-center">
+                <div id="contact" className="flex h-dvh items-center justify-center perspective-distant">
                     <div className="flex h-[70%] w-full flex-col justify-between py-10 lg:grid lg:grid-cols-8 lg:grid-rows-5">
                         <ParallaxDiv
                             className="col-span-2 col-start-1 row-span-3 lg:translate-x-1/3"
