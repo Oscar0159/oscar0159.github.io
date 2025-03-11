@@ -1,6 +1,5 @@
-'use client'
-
-import { MotionProps, motion, useAnimate, useMotionValue, useSpring, useTransform, useWillChange } from 'motion/react'
+// 'use client'
+import { MotionProps, motion, useMotionValue, useSpring, useTransform, useWillChange } from 'motion/react'
 import { MouseEvent, useEffect, useRef } from 'react'
 
 export default function ParallaxDiv({
@@ -8,7 +7,6 @@ export default function ParallaxDiv({
     degree = 5,
     ...props
 }: MotionProps & React.ComponentProps<'div'> & { degree?: number }) {
-    const [scope, animate] = useAnimate()
     const rectMemo = useRef<DOMRect | null>(null)
 
     const willChange = useWillChange()
@@ -24,7 +22,6 @@ export default function ParallaxDiv({
 
         if (!rectMemo.current) {
             rectMemo.current = e.currentTarget.getBoundingClientRect()
-            console.log(rectMemo.current)
         }
 
         const { left, top, width, height } = rectMemo.current
@@ -32,15 +29,14 @@ export default function ParallaxDiv({
         const newX = (clientX - left) / width
         const newY = (clientY - top) / height
 
-        animate(x, newX)
-        animate(y, newY)
-
-        console.log({ x: newX, y: newY })
+        x.set(newX)
+        y.set(newY)
     }
 
     const handleMouseLeave = () => {
-        animate(x, 0.5)
-        animate(y, 0.5)
+        x.set(0.5)
+        y.set(0.5)
+        rectMemo.current = null
     }
 
     useEffect(() => {
@@ -57,7 +53,6 @@ export default function ParallaxDiv({
 
     return (
         <motion.div
-            ref={scope}
             className={props.className}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
